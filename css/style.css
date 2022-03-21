@@ -1,0 +1,68 @@
+:root {
+    --color-main: #eddede;
+    --color-header: #0f0f0f;
+}
+
+@media(preers-color-scheme:dark) {
+    :root {
+        --color-main: #0f0f0f;
+        --color-main: #eddede;
+    }
+}
+
+body {
+    margin: 0;
+    background-color: var(--color-main);
+}
+
+header {
+    width: 100vw;
+    height: 50px;
+    background-color: var(--color-header);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 15%;
+    position: absolute;
+    top: -10px;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--color-main);
+    padding: 5px;
+    border-radius: 15%;
+    position: relative;
+    top: 5px;
+    overflow: hidden;
+}
+
+header a span {
+    position: relative;
+    display: block;
+    background-color: var(--color-main);
+}
+
+header a span:nth-child(1) {
+    top: 0;
+    left: -200%;
+    width: 100%;
+    height: 2px;
+}
+
+header a:hover span:nth-child(1) {
+    left: 0;
+    transition: 1s;
+}
+
+header a span:nth-child(2) {
+    top: -200%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+}
+
+header a:hover span:nth-child(2) {
+    top: 100%;
+    transition: 2s;
+}
