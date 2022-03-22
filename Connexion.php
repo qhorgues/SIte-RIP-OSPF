@@ -1,6 +1,6 @@
 <?php
     setcookie("user", "", time() + 3600 * 24 * 365, NULL, NULL, false, true);
-    setcookie("attempt", "false", time() + 3600, NULL, NULL, false, true);
+    // setcookie("attempt", "false", time() + 3600, NULL, NULL, false, true);
 
     function connect_ddb($host, $dbname, $username, $passwd) {
         $dbh = @mysqli_connect($host,$username,$passwd,$dbname);
@@ -14,11 +14,7 @@
                 if ( !$resultat ) {
                     die( "Erreur creation database : " . mysqli_error($dbh) . "<br>" );
                 }
-                addTable($dbh, $dbname, "user","identifier VARCHAR(40) PRIMARY KEY, 
-                                                password VARCHAR(200) NOT NULL");
-
-                addTable($dbh, $dbname, "score", "identifier VARCHAR(40) PRIMARY KEY,
-                                                  score TINYINT");
+                
             } else {
                 return NULL;
             }
@@ -67,6 +63,12 @@
         echo "Error : ".mysqli_error($dbh);
         die();
     }
+	
+	addTable($dbh, $dbname, "user","identifier VARCHAR(40) PRIMARY KEY, 
+                                    password VARCHAR(200) NOT NULL");
+
+    addTable($dbh, $dbname, "score", "identifier VARCHAR(40) PRIMARY KEY,
+                                      score TINYINT");
 
 ?>
 
@@ -82,33 +84,41 @@
         
 
         <?php
-            if ( !isset($_POST['identifier'], $_POST['password'])) {
+			echo password_hash("1234", PASSWORD_DEFAULT);
+            if ( !isset($_POST['identifier']) || !isset($_POST['password'])) {
         ?>
             <form action="Connexion.php" method="post">
                 <?php
-                    if ($_COOKIE['attempt'] == "true") {
-                        echo "<span style='color:red'>Vous devez remplir tous les champs</span><br/>";
-                    }
+                    echo "<span style='color:red'>Vous devez remplir tous les champs</span><br/>";
                 ?>
                 <input type="text" name="identifier" required><br/>
                 <input type="password" name="password" required><br/>
                 <?php
-                    setcookie("attempt", "true", time() + 3600, NULL, NULL, false, true);
+                    // setcookie("attempt", "true", time() + 3600, NULL, NULL, false, true);
                 ?>
                 <input type="submit" value="Valider">
             </form>
         <?php
-            }
-            
-            else if ($_POST['password']=="kangourou")
-            {    ?>
-                <h1>Voici les codes d'accès :</h1>
-            
-                <p><strong>CRD5-GTFT-CK65-JOPM-V29N-24G1-HH28-LLFV</strong></p>
-            <?php
             } else {
-                setcookie("attempt", "true", time() + 3600, NULL, NULL, false, true);
-                echo '<p>Mot de passe incorrect</p>';
-            } ?>
+				$request = "SELECT * FROM `user` WHERE `identifier` = '".$_POST['identifier']."';";
+				echo $request;
+				$ret = mysqli_query($dbh, $request);
+				$account_exist = mysqli_num_rows($ret);
+				if ( !mysqli_errno($dbh) ) {
+					$ligne = mysqli_fetch_assoc($ret);
+				} else {
+					echo "Impossible de récupérer les comptes existants";
+				}
+				if ($account_exist && password_verify($_POST['password'], $ligne['password']))
+				{    ?>
+					<h1>Voici les codes d'accès :</h1>
+            
+					<p><strong>CRD5-GTFT-CK65-JOPM-V29N-24G1-HH28-LLFV</strong></p>
+				<?php
+				} else {
+					
+					echo '<p>Mot de passe incorrect</p>';
+				}
+			} ?>
             </body>
 </html>
