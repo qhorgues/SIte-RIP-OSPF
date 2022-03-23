@@ -1,0 +1,66 @@
+input[type=text], input[type=password] {
+    border-radius: 15%;
+    border-color: var(--color-frontText);
+    box-shadow: 0 0 5px var(--color-frontText),
+                 0 0 10px var(--color-frontText);
+    background-color: var(---color-backText);
+    color: var(---color-frontText);
+    font-size: 15px;
+    border-style : none;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--color-frontText),
+                 0 0 10px var(--color-frontText),
+                 0 0 25px var(--color-frontText),
+                 0 0 50px var(--color-frontText);
+}
+
+input[type="submit"] {
+    border-radius: 25%;
+    border-color: var(--color-frontText);
+    font-size: 25px;
+    background-color: var(--color-backText);
+    color: var(--color-frontText);
+    border-style: solid;
+    cursor: pointer;
+    margin: 10px;
+}
+
+input[type="submit"]:hover {
+    box-shadow: 0 0 5px var(--color-frontText),
+                 0 0 10px var(--color-frontText),
+                 0 0 20px var(--color-frontText);
+    transition: 1s;
+}
+
+input[type="submit"]:focus {
+    border-radius: 15%;
+    box-shadow: 0 0 5px var(--color-frontText),
+                 0 0 10px var(--color-frontText),
+                 0 0 25px var(--color-frontText),
+                 0 0 50px var(--color-frontText);
+    transition: 0s;
+}
+
+input.emergency {
+    border-color: #a83f3f;
+    color: #a83f3f;
+    background-color: var(--color-main);
+}
+
+input.emergency:hover {
+    box-shadow: 0 0 5px #a83f3f,
+                 0 0 10px #a83f3f,
+                 0 0 20px #a83f3f;
+}
+
+span input[type="radio"] {
+    position: relative;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    background-color: var(--color-main);
+    outline: none;
+}
