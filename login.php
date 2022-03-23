@@ -202,6 +202,7 @@
                             if (!preg_match($patern, $_POST['createPassword'])) {
                                 $messagePassword = "Le mot de passe doit posséder au moins : 
                                                     <li> 6 caractères et 20 caractères maximums</li>
+                                                    <li>Un chiffre</li>
                                                     <li>Une majuscules</li>
                                                     <li>Une minuscules</li>
                                                     <li>Un caractères spécial ex: &, %, !, #</li>";
