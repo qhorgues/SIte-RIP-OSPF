@@ -126,9 +126,9 @@
 	addTable($dbh, $dbname, "user","identifier VARCHAR(30) PRIMARY KEY, 
                                     password VARCHAR(255) NOT NULL"); // 255 : Valeur recomandée par la doc PHP
 
-    addTable($dbh, $dbname, "score", "identifier VARCHAR(30),
-                                      score TINYINT,
-                                      date_score TIMESTAMP");
+    addTable($dbh, $dbname, "score", "identifier VARCHAR(30) NOT NULL,
+                                      score TINYINT NOT NULL,
+                                      date_score TIMESTAMP NOT NULL");
 
 ?>
 
@@ -246,6 +246,8 @@
                         if ($_POST['createIdentifier'] == "") {
                             $messageId = "Vous devez saisir votre identifiant";
                             $error = true;
+                        } else if (strlen($_POST['createIdentifier']) > 30) {
+                            viewForm("L'identifiant ne peut pas faire plus de 30 caractères");
                         } else {
                             $request = "SELECT * FROM `user` WHERE `identifier` = '".$_POST['createIdentifier']."';";
                             //echo $request;

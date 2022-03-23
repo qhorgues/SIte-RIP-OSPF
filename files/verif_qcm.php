@@ -124,6 +124,7 @@
             ?>
 
             <div>
+                <br/>
                 <span class="titlequestV">Le protocole RIP permet de trouver : </span><span><?= verifRep("finish_qcm", "question1", "2", $rep1, $score) ?></span>
                 <br/>
                 <br/>
@@ -147,6 +148,18 @@
             Votre score est <?php echo (string)$score; ?>, c'est <?php echo $noteScore[$score]; ?><br/><br/>
             <?php
                 if ($user != "") {
+                    if (isset($_COOKIE['quiz']) && $_COOKIE['quiz'] == "true") {
+                        setcookie("quiz", "false", 0, NULL, NULL, false, true);
+                        $request = "INSERT INTO `score` VALUES ('".$user."', '".$score."', CURRENT_TIMESTAMP());";
+                        mysqli_begin_transaction($dbh);
+                        if ( !mysqli_query($dbh, $request) ) {
+                            mysqli_rollback($dbh);
+                            echo "Impossible d'enregistrer le score";
+                        } else {
+                            mysqli_commit($dbh);
+                        }
+                    }
+
                     $request = "SELECT `score`, `date_score` FROM `score` WHERE `identifier` = '".$user."' ORDER BY date_score DESC LIMIT 10;";
                     $ret = mysqli_query($dbh, $request);
                     $numScore = mysqli_num_rows($ret);
@@ -170,18 +183,6 @@
                     } else if ($numScore == 1) {
                         $line = mysqli_fetch_assoc($ret);
                         echo "Votre dernier score est ".$line['score']." le ".date("d/m/Y à H:i:s", strtotime($line['date_score'])); 
-                    }
-                    
-                    if (isset($_COOKIE['quiz']) && $_COOKIE['quiz'] == "true") {
-                        setcookie("quiz", "false", 0, NULL, NULL, false, true);
-                        $request = "INSERT INTO `score` VALUES ('".$user."', '".$score."', CURRENT_TIMESTAMP());";
-                        mysqli_begin_transaction($dbh);
-                        if ( !mysqli_query($dbh, $request) ) {
-                            mysqli_rollback($dbh);
-                            echo "Impossible d'enregistrer le score";
-                        } else {
-                            mysqli_commit($dbh);
-                        }
                     }
                 }
             ?>

@@ -3,6 +3,7 @@
     --color-header: #0f0f0f;
     --color-backText: #efe0e0;
     --color-frontText: #787070;
+    --color-border: #fff2f0;
 }
 
 @media(prefers-color-scheme:dark) {
@@ -11,6 +12,7 @@
         --color-header: #8ff1e1;
         --color-backText: #266050;
         --color-frontText: #6aa191;
+        --color-border: #266050
     }
 }
 
@@ -143,6 +145,6 @@ table {
 }
 
 th, td {
-    border: 3px solid var(--color-backText);
+    border: 3px solid var(--color-border);
     padding: 10px;
 }
