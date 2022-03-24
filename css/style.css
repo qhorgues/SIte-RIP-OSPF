@@ -148,3 +148,8 @@ th, td {
     border: 3px solid var(--color-border);
     padding: 10px;
 }
+
+.quest {
+	display: flex;
+	flex-direction: column;
+}
