@@ -20,7 +20,7 @@
                     if (isset($_POST[$nameRep])) {
                         $numRepUser = $_POST[$nameRep];
                         if($numRepUser >= count($tabRep)) {
-                            echo "Bien tenté mais non ça ne marche pas !";
+                            echo "Bien tenté, mais non ça ne marche pas !";
                         } else {
 							echo $tabRep[$numRepUser];
 							if ($numRep == $numRepUser)
@@ -35,7 +35,7 @@
 						}
                         
                     } else {
-                        echo "<span class='error'>Vous n'avez pas répondu c'est dommage</span>";
+                        echo "<span class='error'>Vous n'avez pas répondu, c'est dommage.</span>";
                     }
                 }            
             }

@@ -25,7 +25,7 @@
                     echo "<span class=\"error\">".$messagePassword2."</span><br/>";
                 }
             ?>
-            Ressaisir nouveau mot de passe : <br/>
+            Ressaisir le nouveau mot de passe : <br/>
             <input type="password" name="newPassword2" required><br/>
             <br/><input type="submit" value="Valider" name="modifyPassword">
             
@@ -156,7 +156,7 @@
                         header("Location: ./welcome.php");
                         exit(0);
                     } else if (isset($_POST['delete'])) {
-                        echo "<span class='error'>Etês vous sûr de vouloir supprimer votre compte et toutes ses données !!!</span>";
+                        echo "<span class='error'>Êtes-vous sûr de vouloir supprimer votre compte et toutes ses données ?</span>";
                         ?>
                         <form method="post" action="profile.php">
                             <br/><input type="submit" value="Annuler" name="cancel">    

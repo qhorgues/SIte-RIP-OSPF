@@ -24,20 +24,20 @@
                 Le protocole OSPF découvre sa topographie en envoyant des messages à ces voisins, appelé généralement hello.
                 Ce message fonctionne légèrement comme le signal du protocole RIP.
                 <br/>
-                La tapographie c'est bien, mais comment savoir si c'est le chemin le plus rapide ?
+                La topographie, c'est bien, mais comment savoir si c'est le chemin le plus rapide ?
                 <br/>
-                Et bien les routeurs calculent les poids des liasons entre eux et leurs voisins.
-                Ils calculent les poid avec la bande passante.
-                La formule est 10⁸ / debit. Les valeurs sont en octets (bytes pour les anglais).
+                Et bien les routeurs calculent les poids des liaisons entre eux et leurs voisins.
+                Ils calculent les poids avec la bande passante.
+                La formule est 10⁸/debit. Les valeurs sont en octets (bytes pour les Anglais).
 
                 <br/>
                 <br/>
 
-                Donc pour une liason de 1 Go/s, ce qui est équivalent à 1 000 000 000 o/s soit 1 X 10⁹ o.
+                Donc pour une liaison de 1 Go/s, ce qui est équivalent à 1 000 000 000 o/s soit 1 X 10⁹ o.
                 <br/>
-                Ce qui donne un poid de 10⁸ / 10⁹ = 1/10 = 0,1.
+                Ce qui donne un poids de 10⁸/10⁹ = 1/10 = 0,1.
                 <br>
-                Donc une liason de 1 Go/s a un poid de 0,1.
+                Donc une liaison de 1 Go/s a un poids de 0,1.
             </p>
         </div>
 

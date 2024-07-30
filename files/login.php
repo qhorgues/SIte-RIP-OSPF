@@ -134,14 +134,14 @@
                     } else if ($_POST['identifier'] == "" || $_POST['password'] == "") {
                         viewForm("Vous n'avez pas saisie votre identifiant ou votre mot de passe");
                     } else if (strlen($_POST['identifier']) > 30) {
-                        viewForm("L'identifiant ne peut pas faire plus de 30 caractères");
+                        viewForm("L'identifiant ne peut pas faire plus de 30 caractères.");
                     } else {
                         $request = "SELECT * FROM `user` WHERE `identifier` = '".$_POST['identifier']."';";
                         $ret = mysqli_query($dbh, $request);
                         if ( !mysqli_errno($dbh) ) {
                             $line = mysqli_fetch_assoc($ret);
                         } else {
-                            viewForm("Impossible de récupérer les comptes existants");
+                            viewForm("Impossible de récupérer les comptes existants.");
                         }
                         if (mysqli_num_rows($ret) > 0)
                         {
@@ -151,10 +151,10 @@
                                 header("Location: ./profile.php");
                                 exit(0);
                             } else {
-                                viewForm("Identifiant ou mot de passe incorecte");
+                                viewForm("Identifiant ou mot de passe incorrecte.");
                             }
                         } else {
-                            viewForm("Identifiant ou mot de passe incorecte");
+                            viewForm("Identifiant ou mot de passe incorrecte.");
                         }
                     }
                 } else {
@@ -178,10 +178,10 @@
                         viewFormInscription("", "", "");
                     } else {
                         if ($_POST['createIdentifier'] == "") {
-                            $messageId = "Vous devez saisir votre identifiant";
+                            $messageId = "Vous devez saisir votre identifiant.";
                             $error = true;
                         } else if (strlen($_POST['createIdentifier']) > 30) {
-                            viewForm("L'identifiant ne peut pas faire plus de 30 caractères");
+                            viewForm("L'identifiant ne peut pas faire plus de 30 caractères.");
                         } else {
                             $request = "SELECT * FROM `user` WHERE `identifier` = '".$_POST['createIdentifier']."';";
                             //echo $request;
@@ -207,10 +207,10 @@
                                 
                             }
                             if ($_POST['createPassword2'] == "") {
-                                $message2Password = "Vous devez ressaisir votre mot de passe";
+                                $message2Password = "Vous devez ressaisir votre mot de passe.";
                                 $error = true;
                             } else if ($_POST['createPassword2'] != $_POST['createPassword']) {
-                                $message2Password = "Vous devez saisir le même mot de passe";
+                                $message2Password = "Vous devez saisir le même mot de passe.";
                                 $error = true;
                             }
                         } 

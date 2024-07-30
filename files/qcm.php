@@ -16,7 +16,7 @@
         <?= include("./../elements/header.php"); ?>
 
         <div class="box">
-            <h1 id="titleqcm">Êtes-vous prêt aux questions ?</h1>
+            <h1 id="titleqcm">Êtes-vous prêt pour les questions ?</h1>
             <?php
                 if ($user == "")
                 {   
