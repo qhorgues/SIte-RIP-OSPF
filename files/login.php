@@ -1,5 +1,5 @@
 <?php
-	include("./../elements/begin_php.php");
+	include "./../elements/begin_php.php";
 
     function connect_ddb(string $host, string $dbname, string $username, string $passwd) {
         $dbh = @mysqli_connect($host,$username,$passwd,$dbname);
@@ -99,7 +99,7 @@
     $dbh = connect_ddb($host, $dbname, $username, $passwd);
     if ($dbh == NULL)
     {
-        echo "Error : ".mysqli_error($dbh);
+        echo "Error : dbh = NULL";
         die();
     }
 	
@@ -122,7 +122,7 @@
         <link rel="stylesheet" type="text/css" href="./../css/input.css"/>
     </head>
     <body>
-        <?= include("./../elements/header.php"); ?>
+        <?= include "./../elements/header.php"; ?>
         <div id="boxIdentifiant">
             <h2>Connexion : </h2>
         
@@ -196,6 +196,7 @@
                             $error = true;
                         } else {
                             $patern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)\S{6,20}$/";
+                            //$patern = "/^\S{6,20}$/";  
                             if (!preg_match($patern, $_POST['createPassword'])) {
                                 $messagePassword = "Le mot de passe doit posséder au moins : 
                                                     <li> 6 caractères et 20 caractères maximums</li>
@@ -218,7 +219,8 @@
                     if ($error) {
                         viewFormInscription($messageId, $messagePassword, $message2Password);
                     } else {
-                        $request = "INSERT INTO `user` VALUES ('".$_POST['createIdentifier']."', '".password_hash($_POST['createPassword'], PASSWORD_DEFAULT)."');";
+                        $password = password_hash($_POST['createPassword'], PASSWORD_DEFAULT);
+                        $request = "INSERT INTO `user` VALUES ('".$_POST['createIdentifier']."', '".$password."');";
                         mysqli_begin_transaction($dbh);
                         if ( !mysqli_query($dbh, $request) ) {
                             mysqli_rollback($dbh);

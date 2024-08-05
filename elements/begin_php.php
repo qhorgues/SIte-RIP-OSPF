@@ -1,14 +1,12 @@
 <?php
-	$host 	 = "localhost";
-	$dbname 	 = "account_quiz";
-	$username = "root";
-	$passwd 	 = "";
-	
+
+	include "../server_data.php";
+	$dbh = NULL;
 	$dbh = @mysqli_connect($host,$username,$passwd,$dbname);
 	if ( mysqli_connect_errno() ) {
 		$dbh = NULL;
 	}
-	
+
 	function if_hash_user_exist($dbh, string $hash_user) {
 		$request = "SELECT `identifier` FROM `user`;";
 		$ret = mysqli_query($dbh, $request);

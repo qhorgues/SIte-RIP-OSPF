@@ -1,0 +1,5 @@
+<?php
+    $host 	 = "localhost";
+	$dbname 	 = "account_quiz";
+	$username = "user";
+	$passwd 	 = "password";
